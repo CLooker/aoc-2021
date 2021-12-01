@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+import static java.util.Objects.requireNonNull;
+
 public abstract class Solution implements Supplier<Number> {
 
   protected final String inputFile;
@@ -18,7 +20,7 @@ public abstract class Solution implements Supplier<Number> {
   protected Stream<String> readInputFile() {
     try {
       URL resourceUrl = getClass().getClassLoader().getResource(inputFile);
-      assert resourceUrl != null;
+      requireNonNull(resourceUrl);
       return Files.lines(Path.of(resourceUrl.getPath()));
     } catch (IOException e) {
       throw new RuntimeException(e);
