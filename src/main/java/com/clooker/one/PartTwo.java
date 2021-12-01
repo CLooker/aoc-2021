@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Slf4j
 class PartTwo extends Solution {
 
   public PartTwo(String inputFile) {
