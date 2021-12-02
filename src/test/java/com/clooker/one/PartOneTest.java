@@ -8,17 +8,11 @@ class PartOneTest {
 
   @Test
   void easy() {
-    assertEquals(
-            7L,
-            new PartOne("inputs/one_easy.txt").get()
-    );
+    assertEquals(7L, new PartOne("inputs/one_easy.txt").get());
   }
 
   @Test
   void hard() {
-    assertEquals(
-            1215L,
-            new PartOne("inputs/one_hard.txt").get()
-    );
+    assertEquals(1215L, new PartOne("inputs/one_hard.txt").get());
   }
 }
