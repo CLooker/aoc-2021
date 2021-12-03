@@ -1,4 +1,4 @@
-package com.clooker.two;
+package com.clooker.three;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,11 +8,11 @@ class PartOneTest {
 
   @Test
   void easy() {
-    assertEquals(150, new PartOne("inputs/two_easy.txt").get());
+    assertEquals(198, new PartOne("inputs/three_easy.txt").get());
   }
 
   @Test
   void hard() {
-    assertEquals(1924923, new PartOne("inputs/two_hard.txt").get());
+    assertEquals(3923414, new PartOne("inputs/three_hard.txt").get());
   }
 }
