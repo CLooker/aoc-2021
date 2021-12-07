@@ -5,7 +5,9 @@ import com.clooker.five.model.Point;
 
 import java.util.HashMap;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 class PartTwo extends Solution {
 
   public PartTwo(String inputFile) {
@@ -30,53 +32,51 @@ class PartTwo extends Solution {
               if (!xsMatch && !ysMatch) {
                 int x = startPoint.getX();
                 int y = startPoint.getY();
-
                 while (true) {
-                  boolean shouldContinue =
-                      (startPoint.getX() < endPoint.getX()
-                              ? x <= endPoint.getX()
-                              : x >= startPoint.getX())
-                          || (startPoint.getY() < endPoint.getY()
-                              ? y <= endPoint.getY()
-                              : y >= startPoint.getY());
-
-                  if (!shouldContinue) {
-                    break;
-                  }
-
                   Point point = new Point(x, y);
-
                   freqByPoint.merge(point, 1, Integer::sum);
 
-                  if (startPoint.getX() < endPoint.getX()) {
-                    x++;
-                  } else {
+                  if (startPoint.getX() > endPoint.getX()) {
                     x--;
-                  }
-
-                  if (startPoint.getY() < endPoint.getY()) {
-                    y++;
+                    if (x < endPoint.getX()) {
+                      return;
+                    }
                   } else {
+                    x++;
+                    if (x > endPoint.getX()) {
+                      return;
+                    }
+                  }
+
+                  if (startPoint.getY() > endPoint.getY()) {
                     y--;
+                    if (y < endPoint.getY()) {
+                      return;
+                    }
+                  } else {
+                    y++;
+                    if (y > endPoint.getY()) {
+                      return;
+                    }
                   }
                 }
-              } else {
-                int start =
-                    xsMatch
-                        ? Math.min(startPoint.getY(), endPoint.getY())
-                        : Math.min(startPoint.getX(), endPoint.getX());
+              }
 
-                int end =
-                    xsMatch
-                        ? Math.max(startPoint.getY(), endPoint.getY())
-                        : Math.max(startPoint.getX(), endPoint.getX());
+              int start =
+                  xsMatch
+                      ? Math.min(startPoint.getY(), endPoint.getY())
+                      : Math.min(startPoint.getX(), endPoint.getX());
 
-                for (int i = start; i <= end; i++) {
-                  Point point =
-                      xsMatch ? new Point(startPoint.getX(), i) : new Point(i, startPoint.getY());
+              int end =
+                  xsMatch
+                      ? Math.max(startPoint.getY(), endPoint.getY())
+                      : Math.max(startPoint.getX(), endPoint.getX());
 
-                  freqByPoint.merge(point, 1, Integer::sum);
-                }
+              for (int i = start; i <= end; i++) {
+                Point point =
+                    xsMatch ? new Point(startPoint.getX(), i) : new Point(i, startPoint.getY());
+
+                freqByPoint.merge(point, 1, Integer::sum);
               }
             });
 
