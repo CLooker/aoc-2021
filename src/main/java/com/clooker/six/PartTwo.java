@@ -31,6 +31,7 @@ class PartTwo extends Solution {
         }
       }
 
+
       Optional.ofNullable(freqByTimer.get(0))
           .ifPresent(
               freq -> {
