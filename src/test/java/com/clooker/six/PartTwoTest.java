@@ -13,6 +13,6 @@ class PartTwoTest {
 
   @Test
   void hard() {
-    assertEquals(365131, new PartOne("inputs/six_hard.txt").get());
+    assertEquals(1650309278600L, new PartTwo("inputs/six_hard.txt").get());
   }
 }
